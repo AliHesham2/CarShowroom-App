@@ -1,4 +1,4 @@
-package com.example.cars.data
+package com.example.cars.model.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -6,7 +6,7 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cars.data.CarData
+import com.example.cars.model.data.CarData
 import com.example.cars.view.CarAdapter
 
 @BindingAdapter("CarlistData")
@@ -25,9 +25,13 @@ fun brandData(txt: TextView, data: String?){
 }
 
 @BindingAdapter("isUsedData")
-fun isUsedData(txt: TextView, data: String?){
+fun isUsedData(txt: TextView, data: Boolean?){
     if (data != null) {
-        txt.text  = "Brand: $data"
+        if(data == true){
+            txt.text  = "isUsed: Yes"
+        }else{
+            txt.text  = "isUsed: No"
+        }
     }else{
         txt.text  = null
     }
@@ -49,14 +53,12 @@ fun picData(img: ImageView, pic: String?){
         Glide
             .with(img.context)
             .load(imgUri)
-            .circleCrop()
             .error(R.drawable.defaultpp)
             .into(img)
     }else{
         Glide
             .with(img.context)
             .load(R.drawable.defaultpp)
-            .circleCrop()
             .into(img)
     }
 

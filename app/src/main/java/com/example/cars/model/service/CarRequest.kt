@@ -1,11 +1,13 @@
-package com.example.cars.service
+package com.example.cars.model.service
 
-import com.example.cars.data.CarResponse
+
+import com.example.cars.model.data.CarResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import io.reactivex.Observable
 import okhttp3.OkHttpClient
-import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -28,11 +30,12 @@ private val retrofit =
         .client(clientt)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
 interface CarService {
     @GET("/api/v1/cars")
-    suspend fun getCarData( @Query("pageNumber") page:Int): Response<CarResponse>
+     fun getCarData( @Query("page") page:Int): Observable<CarResponse>
 }
 
 object CarApi {
