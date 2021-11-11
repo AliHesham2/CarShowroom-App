@@ -16,8 +16,8 @@
         android:theme="@style/Theme.Cars"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".CarActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.CarActivity"></activity>
+        <activity android:name=".splash.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

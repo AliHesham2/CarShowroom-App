@@ -9,14 +9,14 @@ import android.widget.AbsListView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cars.PopUpMsg
+import com.example.cars.util.PopUpMsg
 import com.example.cars.databinding.FragmentCarBinding
 
 
 class CarFragment : Fragment() {
     private lateinit var binding:FragmentCarBinding
     private lateinit var viewModel: CarFragmentViewModel
-    private var  loadmore : Boolean = true
+    private var  loadMore : Boolean = true
     private var isLoading = false
     private var isScrolling = false
     override fun onCreateView(
@@ -43,7 +43,7 @@ class CarFragment : Fragment() {
         })
 
         viewModel.loadMore.observe(this.viewLifecycleOwner,{
-            loadmore = it == true
+            loadMore = it == true
         })
 
         viewModel.loading.observe(this.viewLifecycleOwner,{
@@ -60,7 +60,7 @@ class CarFragment : Fragment() {
         binding.Cars.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if(loadmore){
+                if(loadMore){
                     val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                     val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
                     val visibleItemCount = layoutManager.childCount
@@ -71,7 +71,7 @@ class CarFragment : Fragment() {
                     val shouldPaginate =   isAtLastItem && isNotAtBeginning &&
                             isTotalMoreThanVisible && isScrolling && !isLoading
                     if(shouldPaginate) {
-                        if(loadmore){
+                        if(loadMore){
                             viewModel.callCars()
                             isScrolling = false
                         }

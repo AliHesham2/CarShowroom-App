@@ -1,20 +1,18 @@
-package com.example.cars
+package com.example.cars.util
 
 import android.content.Context
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.cars.R
 import com.google.android.material.snackbar.Snackbar
 
 class PopUpMsg {
 
     companion object{
         fun alertMsg(view: View, msg: String){
-            Snackbar.make(view, msg, Snackbar.LENGTH_LONG).also { snackbar ->
-                snackbar.setAction("ok"){
-                    snackbar.dismiss()
-                }
-                snackbar.setBackgroundTint(ContextCompat.getColor(view.context,R.color.red))
+            Snackbar.make(view, msg, Snackbar.LENGTH_LONG).also { snackBar ->
+                snackBar.setBackgroundTint(ContextCompat.getColor(view.context, R.color.red))
             }.show()
         }
 

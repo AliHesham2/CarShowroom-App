@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "http://demo1585915.mockable.io"
 
-private val  clientt = OkHttpClient.Builder()
+private val  client = OkHttpClient.Builder()
     .connectTimeout(20, TimeUnit.SECONDS)
     .readTimeout(30, TimeUnit.SECONDS)
     .writeTimeout(30, TimeUnit.SECONDS )
@@ -27,7 +27,7 @@ private val moshi = Moshi.Builder()
 
 private val retrofit =
     Retrofit.Builder()
-        .client(clientt)
+        .client(client)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
